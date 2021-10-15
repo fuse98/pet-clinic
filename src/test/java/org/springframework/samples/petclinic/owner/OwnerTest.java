@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.owner;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.model.NamedEntity;
 
@@ -34,15 +35,6 @@ public class OwnerTest {
 		} catch (IllegalAccessException ignored) {}
 	}
 
-
-	@BeforeEach
-	public void setup() {
-		Pet p1 = new Pet();
-		setFieldValue(p1.getClass(), "name", p1, "test_pet_1");
-
-		Pet p2 = new Pet();
-		setFieldValue(p2.getClass(), "name", p2, "test_pet_2");
-	}
 	@Test
 	public void testSetter_setsProperly() throws IllegalAccessException {
 		final Owner owner = new Owner();
@@ -71,13 +63,32 @@ public class OwnerTest {
 	public void testAddPet() throws NoSuchFieldException, IllegalAccessException {
 		final Owner owner = new Owner();
 		Pet pet = new Pet();
-		pet.setName("Test Pet");
+		setFieldValue(NamedEntity.class, "name", pet, "test_pet_1");
 		owner.addPet(pet);
 
 		final Field field = getAccessibleField(owner.getClass(), "pets");
 
 		assertEquals("pets internal wasn't retrieved properly",
 			field.get(owner), new HashSet<>(Arrays.asList(pet)));
+	}
+
+	@Test
+	public void testAddPetNotNew() throws NoSuchFieldException, IllegalAccessException {
+		final Owner owner = new Owner();
+		Pet new_pet = new Pet();
+		setFieldValue(NamedEntity.class, "name", new_pet, "test_pet_1");
+		Pet not_new_pet = new Pet();
+
+		setFieldValue(NamedEntity.class, "name", not_new_pet, "test_pet_1");
+		setFieldValue(BaseEntity.class, "id", not_new_pet, 1000);
+
+		owner.addPet(new_pet);
+		owner.addPet(not_new_pet);
+
+		final Field field = getAccessibleField(owner.getClass(), "pets");
+
+		assertEquals("pets internal wasn't retrieved properly",
+			field.get(owner), new HashSet<>(Arrays.asList(new_pet)));
 	}
 
 	@Test
