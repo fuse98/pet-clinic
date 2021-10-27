@@ -84,7 +84,7 @@ class OwnerTest {
 		assertNotNull(foundPet);
 		assertEquals(foundPet.getName(), petName);
 
-		verify(pet, times(2)).getName();
+		verify(pet, times(2)).getName(); // One inside the getPet and one in assert above
 		verify(pet, times(1)).isNew();
 	}
 
@@ -99,7 +99,7 @@ class OwnerTest {
 		Pet foundPet = owner.getPet(petName, true);
 
 		assertNull(foundPet);
-		verify(pet, times(0)).getName();
+		verify(pet, times(0)).getName(); // pet is ignored so getName is not called
 		verify(pet, times(1)).isNew();
 
 	}
