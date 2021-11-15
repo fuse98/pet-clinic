@@ -56,9 +56,9 @@ public class CustomerDependentPriceCalculatorTests {
 	{
 		List<Pet> pets = new ArrayList<>();
 		pets.add(notInfantNotRarePet);
-		UserType userType = UserType.GOLD;
+		UserType userType = UserType.NEW;
 		double price = priceCalculator.calcPrice(pets, baseCharge, basePricePerPet, userType);
-		assertEquals(1160, price, 0.01);
+		assertEquals(200, price, 0.01);
 	}
 
 	@Test
