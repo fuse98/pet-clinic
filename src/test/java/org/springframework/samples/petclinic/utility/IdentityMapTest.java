@@ -28,23 +28,23 @@ class IdentityMapTest {
 	}
 
 
-    @Test
-    void testSizeOfEmptyIdentityMapMustBeZero() {
+	@Test
+	void testSizeOfEmptyIdentityMapMustBeZero() {
 		assertEquals(0, identityMapUnderTest.size());
-    }
+	}
 
-    @Test
-    void testIsEmpty() {
+	@Test
+	void testIsEmpty() {
 		assertTrue(identityMapUnderTest.isEmpty());
 	}
 
-    @Test
-    void testAddOneEntity() {
+	@Test
+	void testAddOneEntity() {
 		SampleEntity entity = new SampleEntity();
 		identityMapUnderTest.add(entity);
 		assertTrue(identityMapUnderTest.contains(entity));
 		assertEquals(1, identityMapUnderTest.size());
-    }
+	}
 
 	@Test
 	void testAddSomeEntity() {
@@ -55,24 +55,24 @@ class IdentityMapTest {
 		assertEquals(someSampleEntities.size(), identityMapUnderTest.size());
 	}
 
-    @Test
-    void testRemove() {
+	@Test
+	void testRemove() {
 		identityMapUnderTest.addAll(someSampleEntities);
 		someSampleEntities.forEach(sampleEntity -> {
 			assertTrue(identityMapUnderTest.contains(sampleEntity));
 			identityMapUnderTest.remove(sampleEntity);
 			assertFalse(identityMapUnderTest.contains(sampleEntity));
 		});
-    }
+	}
 
-    @Test
-    void test_containsAll() {
+	@Test
+	void test_containsAll() {
 		identityMapUnderTest.addAll(someSampleEntities);
 		assertTrue(identityMapUnderTest.containsAll(someSampleEntities));
 	}
 
-    @Test
-    void test_removeAll() {
+	@Test
+	void test_removeAll() {
 		identityMapUnderTest.addAll(someSampleEntities);
 		assertTrue(identityMapUnderTest.containsAll(someSampleEntities));
 		identityMapUnderTest.removeAll(someSampleEntities);
@@ -83,13 +83,13 @@ class IdentityMapTest {
 		);
 	}
 
-    @Test
-    void test_clear() {
+	@Test
+	void test_clear() {
 		identityMapUnderTest.addAll(someSampleEntities);
 		identityMapUnderTest.clear();
 		assertTrue(identityMapUnderTest.isEmpty());
 		assertEquals(0, identityMapUnderTest.size());
-    }
+	}
 
 	/**
 	 * a simple entity just for testing {@link IdentityMap}
@@ -109,6 +109,7 @@ class IdentityMapTest {
 
 	ArrayList<String> list = new ArrayList<>();
 	Random random = new Random();
+
 	@Test
 	public void test() {
 		IntStream.range(0, 10000)

@@ -245,26 +245,33 @@
       <plugin>
         <groupId>org.pitest</groupId>
         <artifactId>pitest-maven</artifactId>
-        <version>${pitest.version}</version>
+        <version>1.7.3</version>
         <configuration>
           <targetClasses>
-            <param>org.springframework.samples.petclinic.owner.VisitController</param>
+            <param>org.springframework.samples.petclinic.utility.PriceCalculator</param>
           </targetClasses>
           <targetTests>
-            <param>org.springframework.samples.petclinic.owner.VisitControllerTests</param>
+            <param>org.springframework.samples.petclinic.utility.PriceCalculatorTest</param>
           </targetTests>
-          <mutators>
-            <mutator>ROR</mutator>
-          </mutators>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-junit5-plugin</artifactId>
-            <version>0.12</version>
-          </dependency>
-        </dependencies>
       </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.pitest</groupId>-->
+<!--        <artifactId>pitest-maven</artifactId>-->
+<!--        <version>LATEST</version>-->
+<!--        <dependencies>-->
+<!--          <dependency>-->
+<!--            <groupId>org.pitest</groupId>-->
+<!--            <artifactId>pitest-junit5-plugin</artifactId>-->
+<!--            <version>LATEST</version>-->
+<!--          </dependency>-->
+<!--        </dependencies>-->
+<!--        <configuration>-->
+<!--          <targetClasses>org.springframework.samples.petclinic.utility.PriceCalculator</targetClasses>-->
+<!--          <targetTests>org.springframework.samples.petclinic.utility.PriceCalculatorTest</targetTests>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+
 
       <!-- Spring Boot Actuator displays build-related information if a git.properties
         file is present at the classpath -->
